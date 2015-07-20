@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>CuteForm transforms ugly select into cute selectable pictures</title>
     <meta name="author" content="db0 (db0company@gmail.com, http://db0.fr/)">
-    <link rel="stylesheet" href="cuteform.css">
+    <link rel="stylesheet" href="cuteform.min.css">
     <style type="text/css">
 @import url(http://fonts.googleapis.com/css?family=Varela+Round);
 body {
@@ -93,11 +93,11 @@ a.button:hover {
       <pre class="prettyprint lang-html">
 
 	&lt;!-- In head --&gt;
-	&lt;link rel=&quot;stylesheet&quot; href=&quot;cuteform.css&quot;&gt;
+	&lt;link rel=&quot;stylesheet&quot; href=&quot;cuteform.min.min.css&quot;&gt;
 
 	&lt;!-- At the end of the body --&gt;
 	&lt;script src=&quot;jquery.min.js&quot;&gt;&lt;/script&gt;
-	&lt;script src=&quot;cuteform.js&quot;&gt;&lt;/script&gt;
+	&lt;script src=&quot;cuteform.min.js&quot;&gt;&lt;/script&gt;
       </pre>
 
       <h2>Notes</h2>
@@ -143,7 +143,7 @@ a.button:hover {
       $("#languagehtml").text($("select[name=languagehtml]").parent().html());
       $("#languagejs").text($("select[name=languagejs]").parent().html());
     </script>
-    <script src="cuteform.js"></script>
+    <script src="cuteform.min.js"></script>
     <script id="cuteformjs">
       cuteform($('select[name=languagejs]'), {
         'ru': 'images/ru.png',
