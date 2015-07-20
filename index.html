@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>CuteForm transforms ugly select into cute selectable pictures</title>
+    <meta name="author" content="db0 (db0company@gmail.com, http://db0.fr/)">
+    <link rel="stylesheet" href="cuteform.css">
+    <style type="text/css">
+@import url(http://fonts.googleapis.com/css?family=Varela+Round);
+body {
+  font-family: 'Varela Round', sans-serif;
+  background: #eee;
+  color: #aaa;
+}
+main {
+  width: 660px;
+  background: white;
+  border-radius: 20px;
+  margin: 50px auto;
+  padding: 20px 40px;
+}
+h1 {
+  text-align: center;
+  margin: 0;
+}
+h1, h2 {
+  margin-top: 50px;
+}
+a {
+  color: #aaa;
+}
+a:hover {
+  color: #bbb;
+}
+.cuteform img.cuteform-selected {
+  border-radius: 15px;
+}
+a.button {
+  background-color: #aaa;
+  color: white;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 0 20px;
+  text-decoration: none;
+  display: inline-block;
+}
+a.button:hover {
+  background-color: #bbb;
+}
+    </style>
+  </head>
+  <body>
+
+    <main>
+      <h1>CuteForm</h1>
+
+      <h2>Download</h2>
+
+      <p><strong>CuteForm</strong> transforms your ugly &lt;select&gt; dropdowns into <strong>cute</strong> selectable images.</p>
+
+      <a class="button" href="https://raw.github.com/db0company/CuteForm/master/cuteform.min.js" target="_blank">Minimified Javascript</a>
+      <a href="https://raw.github.com/db0company/CuteForm/master/cuteform.js" target="_blank">Full Javascript</a>
+      <a class="button" href="https://raw.github.com/db0company/CuteForm/master/cuteform.min.css" target="_blank">Minimified CSS</a>
+      <a href="https://raw.github.com/db0company/CuteForm/master/cuteform.css" target="_blank">Full CSS</a>
+
+      <H2>Using data- in HTML</h2>
+
+      <form>
+	<select name="languagehtml" data-cuteform="true">
+	  <option value="en" data-cuteform-image="images/en.png">English</option>
+	  <option value="ja" data-cuteform-image="images/ja.png">Japanese</option>
+	  <option value="es" data-cuteform-image="images/es.png">Spanish</option>
+	  <option value="de" data-cuteform-image="images/de.png">German</option>
+	</select>
+      </form>
+	<pre class="prettyprint lang-html" id="languagehtml"></pre>
+
+      <h2>Using Javascript</h2>
+
+      <form>
+	<select name="languagejs">
+	  <option value="ru">Russian</option>
+	  <option value="fr">French</option>
+	  <option value="pt">Portuguese</option>
+	  <option value="zh">Chinese</option>
+	</select>
+      </form>
+      <pre class="prettyprint lang-html" id="languagejs"></pre>
+
+      <h2>Requirements</h2>
+
+      <pre class="prettyprint lang-html">
+
+	&lt;!-- In head --&gt;
+	&lt;link rel=&quot;stylesheet&quot; href=&quot;cuteform.css&quot;&gt;
+
+	&lt;!-- At the end of the body --&gt;
+	&lt;script src=&quot;jquery.min.js&quot;&gt;&lt;/script&gt;
+	&lt;script src=&quot;cuteform.js&quot;&gt;&lt;/script&gt;
+      </pre>
+
+      <h2>Notes</h2>
+
+      <ul>
+	<li>You can easily write your own style for the selectable images. <a href="https://raw.github.com/db0company/CuteForm/master/cuteform.css">The CSS</a> is very simple and easy to write.</li>
+	<li>I might add the support for radio buttons in the future, as well as custom HTML code instead of images (which might be useful if you use font icons).</li>
+      </ul>
+
+      <h2>Repository & Social</h2>
+
+      <ul>
+	<li><a href="https://github.com/db0company/CuteForm" target="_blank">GitHub repository</a></li>
+      </ul>
+
+      <iframe src="http://ghbtns.com/github-btn.html?user=db0company&repo=CuteForm&type=watch&size=large&count=true"
+	      allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe>
+      <iframe src="http://ghbtns.com/github-btn.html?user=db0company&repo=CuteForm&type=fork&size=large&count=true"
+	      allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe>
+      <a class="twitter-share-button"
+	 href="https://twitter.com/intent/tweet?text=CuteForm+transforms+ugly+HTML+%3Cselect%3E+into+cute+selectable+images+-+by+%40db0company"
+	 data-size="large">
+	Tweet</a>
+
+      <h2>Author</h2>
+      <ul>
+	<li>Made by <a href="http://db0.fr/" target="_blank">db0</a></li>
+      </ul>
+
+      <a href="https://twitter.com/db0company"
+	 class="twitter-follow-button"
+	 data-show-count="false"
+	 data-size="large"
+	 data-dnt="true">Follow @db0company</a>
+      <iframe src="http://ghbtns.com/github-btn.html?user=db0company&repo=CuteForm&type=follow&size=large"
+	      allowtransparency="true" frameborder="0" scrolling="0" width="220" height="30"></iframe>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css"></script>
+    <script>
+      $("#languagehtml").text($("select[name=languagehtml]").parent().html());
+      $("#languagejs").text($("select[name=languagejs]").parent().html());
+    </script>
+    <script src="cuteform.js"></script>
+    <script id="cuteformjs">
+      cuteform($('select[name=languagejs]'), {
+        'ru': 'images/ru.png',
+        'fr': 'images/fr.png',
+        'pt': 'images/pt.png',
+        'zh': 'images/zh.png',
+      });
+    </script>
+    <script>
+      $("#languagejs").text($("#languagejs").text() + "<script>" + $('#cuteformjs').text() + "<\/script>");
+      </script>
+      <script>
+	window.twttr=function(t,e,r){var n,i=t.getElementsByTagName(e)[0],w=window.twttr||{};return t.getElementById(r)?w:(n=t.createElement(e),n.id=r,n.src="https://platform.twitter.com/widgets.js",i.parentNode.insertBefore(n,i),w._e=[],w.ready=function(t){w._e.push(t)},w)}(document,"script","twitter-wjs");
+      </script>
+  </body>
+</html>
