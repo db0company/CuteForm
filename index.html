@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,6 +5,7 @@
     <title>CuteForm transforms ugly select into cute selectable pictures</title>
     <meta name="author" content="db0 (db0company@gmail.com, http://db0.fr/)">
     <link rel="stylesheet" href="cuteform.min.css">
+    <link rel="stylesheet" href="bootstrap-modal.min.css">
     <style type="text/css">
 @import url(http://fonts.googleapis.com/css?family=Varela+Round);
 body {
@@ -14,7 +14,7 @@ body {
   color: #aaa;
 }
 main {
-  width: 660px;
+  width: 800px;
   background: white;
   border-radius: 20px;
   margin: 50px auto;
@@ -29,6 +29,7 @@ h1, h2 {
 }
 a {
   color: #aaa;
+  text-decoration: underline;
 }
 a:hover {
   color: #bbb;
@@ -48,6 +49,12 @@ a.button {
 a.button:hover {
   background-color: #bbb;
 }
+.cuteform-modal-button {
+  background: #eee;
+  border-radius: 10px;
+  padding: 10px;
+  border: 0;
+}
     </style>
   </head>
   <body>
@@ -55,14 +62,24 @@ a.button:hover {
     <main>
       <h1>CuteForm</h1>
 
-      <h2>Download</h2>
+      <h2>Download & Install</h2>
 
       <p><strong>CuteForm</strong> transforms your ugly &lt;select&gt; dropdowns into <strong>cute</strong> selectable images.</p>
 
-      <a class="button" href="https://raw.github.com/db0company/CuteForm/master/cuteform.min.js" target="_blank">Minified Javascript</a>
+      <a class="button" href="https://raw.githubusercontent.com/db0company/CuteForm/gh-pages/cuteform.min.js" target="_blank">Minified Javascript</a>
       <a href="https://raw.github.com/db0company/CuteForm/master/cuteform.js" target="_blank">Full Javascript</a>
-      <a class="button" href="https://raw.github.com/db0company/CuteForm/master/cuteform.min.css" target="_blank">Minified CSS</a>
+      <a class="button" href="https://raw.githubusercontent.com/db0company/CuteForm/gh-pages/cuteform.min.css" target="_blank">Minified CSS</a>
       <a href="https://raw.github.com/db0company/CuteForm/master/cuteform.css" target="_blank">Full CSS</a>
+
+      <pre class="prettyprint lang-html">
+
+	&lt;!-- In head --&gt;
+	&lt;link rel=&quot;stylesheet&quot; href=&quot;cuteform.min.css&quot;&gt;
+
+	&lt;!-- At the end of the body --&gt;
+	&lt;script src=&quot;jquery.min.js&quot;&gt;&lt;/script&gt;
+	&lt;script src=&quot;cuteform.min.js&quot;&gt;&lt;/script&gt;
+      </pre>
 
       <H2>Using data- in HTML</h2>
 
@@ -88,17 +105,62 @@ a.button:hover {
       </form>
       <pre class="prettyprint lang-html" id="languagejs"></pre>
 
-      <h2>Requirements</h2>
+      <h2>Options</h2>
 
-      <pre class="prettyprint lang-html">
+      <p>If you're using <strong>HTML data- attributes</strong>, add a <code>data-cuteform-option</code> in your &lt;select&gt;.</p>
+      <p>If you're using <strong>Javascript</strong>, specify the option in the dictionary given to the <code>cuteform</code> function.</p>
+
+      <ul>
+	<li>
+	  <h3>hide</h3>
+	  <p>'true' or 'false' <i>(default = 'true')</i></p>
+	  <p>Hide or not the &lt;select&gt; dropdown box</p>
+
+	  <pre class="prettyprint lang-html">&lt;select ... data-cuteform-hide=&quot;false&quot;&gt;...&lt;/select&gt;</pre>
+	  <pre class="prettyprint lang-js">cuteform($('#language'), {'hide': 'false'});</pre>
+
+	  Demo: <select name="languagemodal" data-cuteform="true" data-cuteform-hide="false">
+	    <option value="en" data-cuteform-image="images/en.png">English</option>
+	    <option value="ja" data-cuteform-image="images/ja.png">Japanese</option>
+	    <option value="es" data-cuteform-image="images/es.png">Spanish</option>
+	    <option value="de" data-cuteform-image="images/de.png">German</option>
+	  </select>
+
+	</li>
+	<li>
+	  <h3>modal</h3>
+	  <p>'true' or 'false' <i>(default = 'false')</i></p>
+	  <p>When there are too many options, you can use a modal when the user clicks on the &lt;select&gt;.</p>
+
+	  <pre class="prettyprint lang-html">&lt;select ... data-cuteform-modal=&quot;true&quot;&gt;...&lt;/select&gt;</pre>
+	  <pre class="prettyprint lang-js">cuteform($('#language'), {'modal': 'true'});</pre>
+
+	  Demo: <select name="languagemodal" data-cuteform="true" data-cuteform-modal="true">
+	    <option value="en" data-cuteform-image="images/en.png">English</option>
+	    <option value="ja" data-cuteform-image="images/ja.png">Japanese</option>
+	    <option value="es" data-cuteform-image="images/es.png">Spanish</option>
+	    <option value="de" data-cuteform-image="images/de.png">German</option>
+	    <option value="ru" data-cuteform-image="images/ru.png">Russian</option>
+	    <option value="fr" data-cuteform-image="images/fr.png">French</option>
+	    <option value="pt" data-cuteform-image="images/pt.png">Portuguese</option>
+	  </select>
+
+	  <p>You're going to need to either use Bootstrap modal plugin or code your own CSS/Javascript to show modals.</p>
+	  <a class="button" href="https://raw.githubusercontent.com/db0company/CuteForm/gh-pages/bootstrap-modal.min.css" target="_blank">Bootstrap Modals CSS</a>
+	  <a class="button" href="https://raw.githubusercontent.com/db0company/CuteForm/gh-pages/bootstrap-modal.min.js" target="_blank">Bootstrap Modals Javascript</a>
+
+	  <pre class="prettyprint lang-html">
 
 	&lt;!-- In head --&gt;
-	&lt;link rel=&quot;stylesheet&quot; href=&quot;cuteform.min.min.css&quot;&gt;
+	&lt;link rel=&quot;stylesheet&quot; href=&quot;bootstrap-modals.min.css&quot;&gt;
 
-	&lt;!-- At the end of the body --&gt;
-	&lt;script src=&quot;jquery.min.js&quot;&gt;&lt;/script&gt;
-	&lt;script src=&quot;cuteform.min.js&quot;&gt;&lt;/script&gt;
+	&lt;!-- At the end of the body, after JQuery inclusion --&gt;
+	&lt;script src=&quot;bootstrap-modals.min.js&quot;&gt;&lt;/script&gt;
       </pre>
+
+
+	</li>
+      </ul>
 
       <h2>Notes</h2>
 
@@ -138,7 +200,8 @@ a.button:hover {
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
-    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css"></script>
+    <script src="bootstrap-modal.min.js"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script>
       $("#languagehtml").text($("select[name=languagehtml]").parent().html());
       $("#languagejs").text($("select[name=languagejs]").parent().html());
@@ -146,10 +209,12 @@ a.button:hover {
     <script src="cuteform.min.js"></script>
     <script id="cuteformjs">
       cuteform($('select[name=languagejs]'), {
-        'ru': 'images/ru.png',
-        'fr': 'images/fr.png',
-        'pt': 'images/pt.png',
-        'zh': 'images/zh.png',
+	'images': {
+	  'ru': 'images/ru.png',
+	  'fr': 'images/fr.png',
+	  'pt': 'images/pt.png',
+	  'zh': 'images/zh.png',
+	}
       });
     </script>
     <script>
