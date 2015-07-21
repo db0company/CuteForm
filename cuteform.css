@@ -3,6 +3,10 @@
 /* Sources/Licence: https://github.com/db0company/CuteForm     */
 /***************************************************************/
 
+.cuteform {
+    display: inline-block;
+}
+
 .cuteform img {
     display: inline-block;
     margin: 3px 5px;
