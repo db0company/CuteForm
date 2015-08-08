@@ -1,0 +1,30 @@
+{
+  "name": "CuteForm",
+  "main": "cuteform.min.js",
+  "version": "0.0.0",
+  "homepage": "http://db0company.github.io/CuteForm/",
+  "authors": [
+    "db0company <db0company@gmail.com>"
+  ],
+  "description": "CuteForm transforms your ugly <select> dropdowns into cute selectable images.",
+  "dependencies": {
+    "jquery": "~3.0.0"
+  },
+  "keywords": [
+    "jquery",
+    "select",
+    "cute",
+    "images",
+    "form",
+    "forms",
+    "pretty"
+  ],
+  "license": "Apache2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
