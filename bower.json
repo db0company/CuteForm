@@ -7,9 +7,6 @@
     "db0company <db0company@gmail.com>"
   ],
   "description": "CuteForm transforms your ugly <select> dropdowns into cute selectable images.",
-  "dependencies": {
-    "jquery": "~3.0.0"
-  },
   "keywords": [
     "jquery",
     "select",
@@ -26,5 +23,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
 }
