@@ -7,12 +7,12 @@
     display: inline-block;
 }
 
-.cuteform img {
+.cuteform-elt {
     display: inline-block;
     margin: 3px 5px;
 }
 
-.cuteform img.cuteform-selected {
+.cuteform-elt.cuteform-selected {
     margin: 0 2px;
     border: 3px solid #aaa;
 }

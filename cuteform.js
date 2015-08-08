@@ -3,8 +3,14 @@
 /* Sources/Licence: https://github.com/db0company/CuteForm     */
 /***************************************************************/
 
-function cuteformimage(image, value, options) {
-    return $('<img src="' + image + '" data-cuteform-val="' + value + '">');
+function cuteformhtml(option, options) {
+    var value = option.val();
+    var image = typeof options['images'] !== 'undefined' && typeof options['images'][value] !== 'undefined' ? options['images'][value] : (typeof option.attr('data-cuteform-image') !== 'undefined' ? option.attr('data-cuteform-image') : null);
+    if (image !== null) {
+	return $('<img class="cuteform-elt" src="' + image + '" data-cuteform-val="' + value + '">');
+    }
+    var html = typeof options['html'] !== 'undefined' && typeof options['html'][value] !== 'undefined' ? options['html'][value] : (typeof option.attr('data-cuteform-html') !== 'undefined' ? option.attr('data-cuteform-html') : value);
+    return $('<div class="cuteform-elt" data-cuteform-val="' + value + '">' + html + '</div>');
 }
 
 function cuteform(select, options) {
@@ -31,17 +37,16 @@ function cuteform(select, options) {
     // Show images on cuteform div
     select.find('option').each(function() {
 	var option = $(this);
-	var image = typeof options['images'] !== 'undefined' && typeof options['images'][option.val()] !== 'undefined' ? options['images'][option.val()] : (typeof option.attr('data-cuteform-image') == 'undefined' ? option.val() : option.attr('data-cuteform-image'));
-	image = cuteformimage(image, option.val(), options);
-	cuteform.append(image);
+	var html = cuteformhtml(option, options);
+	cuteform.append(html);
 	if (option.val() == select.find('option:selected').first().val()) {
-	    image.addClass('cuteform-selected');
+	    html.addClass('cuteform-selected');
 	}
 	// On click, change current selected option and change images style
-	image.click(function(e) {
-	    select.val(image.attr('data-cuteform-val'));
-	    cuteform.find('img').removeClass('cuteform-selected');
-	    image.addClass('cuteform-selected');
+	html.click(function(e) {
+	    select.val(html.attr('data-cuteform-val'));
+	    cuteform.find('.cuteform-elt').removeClass('cuteform-selected');
+	    html.addClass('cuteform-selected');
 	    if (with_modal) {
 		modal_button.text('');
 		modal_button.append(cuteform.find('.cuteform-selected').clone(true).off());
@@ -63,7 +68,7 @@ function cuteform(select, options) {
     }
     // Change the selected images when the original select box changes
     select.change(function() {
-	cuteform.find('img').removeClass('cuteform-selected');
+	cuteform.find('.cuteform-elt').removeClass('cuteform-selected');
 	cuteform.find('[data-cuteform-val=' + select.find('option:selected').first().val() + ']').addClass('cuteform-selected');
     });
 }
