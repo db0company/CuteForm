@@ -6,6 +6,7 @@
     <meta name="author" content="db0 (db0company@gmail.com, http://db0.fr/)">
     <link rel="stylesheet" href="cuteform.min.css">
     <link rel="stylesheet" href="bootstrap-modal.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <style type="text/css">
 @import url(http://fonts.googleapis.com/css?family=Varela+Round);
 body {
@@ -34,7 +35,7 @@ a {
 a:hover {
   color: #bbb;
 }
-.cuteform img.cuteform-selected {
+.cuteform-elt.cuteform-selected {
   border-radius: 15px;
 }
 a.button {
@@ -54,6 +55,9 @@ a.button:hover {
   border-radius: 10px;
   padding: 10px;
   border: 0;
+}
+div.cuteform-elt {
+  padding: 5px;
 }
     </style>
   </head>
@@ -81,7 +85,7 @@ a.button:hover {
 	&lt;script src=&quot;cuteform.min.js&quot;&gt;&lt;/script&gt;
       </pre>
 
-      <H2>Using data- in HTML</h2>
+      <H2>Using data- attributes in HTML</h2>
 
       <form>
 	<select name="languagehtml" data-cuteform="true">
@@ -105,28 +109,37 @@ a.button:hover {
       </form>
       <pre class="prettyprint lang-html" id="languagejs"></pre>
 
+      <h2>With HTML elements instead of images</h2>
+
+      <form>
+	<select name="currency" data-cuteform="true">
+	  <option value="usd" data-cuteform-html="<i class='fa fa-usd'></i> Dollar">Dollar</option>
+	  <option value="eur" data-cuteform-html="<i class='fa fa-eur'></i> Euro">Euro</option>
+	  <option value="jpy" data-cuteform-html="<i class='fa fa-jpy'></i> Yen">Yen</option>
+	  <option value="btc" data-cuteform-html="<i class='fa fa-btc'></i> Bitcoin">Bitcoin</option>
+	</select>
+      </form>
+      <pre class="prettyprint lang-html" id="currency"></pre>
+
+      <p>HTML elements can also be specified in Javascript:</p>
+
+      <form>
+	<select name="rockpaperscissors">
+	  <option value="rock">Rock</option>
+	  <option value="paper">Paper</option>
+	  <option value="scissors">Scissors</option>
+	  <option value="lizard">Lizard</option>
+	  <option value="spock">Spock</option>
+	</select>
+      </form>
+      <pre class="prettyprint lang-html" id="rockpaperscissors"></pre>
+
       <h2>Options</h2>
 
       <p>If you're using <strong>HTML data- attributes</strong>, add a <code>data-cuteform-option</code> in your &lt;select&gt;.</p>
       <p>If you're using <strong>Javascript</strong>, specify the option in the dictionary given to the <code>cuteform</code> function.</p>
 
       <ul>
-	<li>
-	  <h3>hide</h3>
-	  <p>'true' or 'false' <i>(default = 'true')</i></p>
-	  <p>Hide or not the &lt;select&gt; dropdown box</p>
-
-	  <pre class="prettyprint lang-html">&lt;select ... data-cuteform-hide=&quot;false&quot;&gt;...&lt;/select&gt;</pre>
-	  <pre class="prettyprint lang-js">cuteform($('#language'), {'hide': 'false'});</pre>
-
-	  Demo: <select name="languagemodal" data-cuteform="true" data-cuteform-hide="false">
-	    <option value="en" data-cuteform-image="images/en.png">English</option>
-	    <option value="ja" data-cuteform-image="images/ja.png">Japanese</option>
-	    <option value="es" data-cuteform-image="images/es.png">Spanish</option>
-	    <option value="de" data-cuteform-image="images/de.png">German</option>
-	  </select>
-
-	</li>
 	<li>
 	  <h3>modal</h3>
 	  <p>'true' or 'false' <i>(default = 'false')</i></p>
@@ -157,7 +170,21 @@ a.button:hover {
 	&lt;!-- At the end of the body, after JQuery inclusion --&gt;
 	&lt;script src=&quot;bootstrap-modals.min.js&quot;&gt;&lt;/script&gt;
       </pre>
+	</li>
+	<li>
+	  <h3>hide</h3>
+	  <p>'true' or 'false' <i>(default = 'true')</i></p>
+	  <p>Hide or not the &lt;select&gt; dropdown box</p>
 
+	  <pre class="prettyprint lang-html">&lt;select ... data-cuteform-hide=&quot;false&quot;&gt;...&lt;/select&gt;</pre>
+	  <pre class="prettyprint lang-js">cuteform($('#language'), {'hide': 'false'});</pre>
+
+	  Demo: <select name="languagemodal" data-cuteform="true" data-cuteform-hide="false">
+	    <option value="en" data-cuteform-image="images/en.png">English</option>
+	    <option value="ja" data-cuteform-image="images/ja.png">Japanese</option>
+	    <option value="es" data-cuteform-image="images/es.png">Spanish</option>
+	    <option value="de" data-cuteform-image="images/de.png">German</option>
+	  </select>
 
 	</li>
       </ul>
@@ -165,8 +192,8 @@ a.button:hover {
       <h2>Notes</h2>
 
       <ul>
-	<li>You can easily write your own style for the selectable images. <a href="https://raw.github.com/db0company/CuteForm/master/cuteform.css">The CSS</a> is very simple and easy to write.</li>
-	<li>I might add the support for radio buttons in the future, as well as custom HTML code instead of images (which might be useful if you use font icons).</li>
+	<li>It's possible to combine HTML elements and images in the same select, and it's also possible to combine Javascript and HTML data- attributes in the same select. In the latter, Javascript options may override HTML data- attribute options.<br><br></li>
+	<li>You can easily write your own style for the selectable images. <a href="https://raw.github.com/db0company/CuteForm/master/cuteform.css">The CSS</a> is very simple and easy to write.<br><br></li>
       </ul>
 
       <h2>Repository & Social</h2>
@@ -204,7 +231,9 @@ a.button:hover {
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script>
       $("#languagehtml").text($("select[name=languagehtml]").parent().html());
+      $("#currency").text($("select[name=currency]").parent().html());
       $("#languagejs").text($("select[name=languagejs]").parent().html());
+      $("#rockpaperscissors").text($("select[name=rockpaperscissors]").parent().html());
     </script>
     <script src="cuteform.min.js"></script>
     <script id="cuteformjs">
@@ -217,8 +246,20 @@ a.button:hover {
 	}
       });
     </script>
+    <script id="cuteformwithhtmljs">
+      cuteform($('select[name=rockpaperscissors]'), {
+	'html': {
+	  'rock': '<i class="fa fa-hand-rock-o"></i> Rock',
+	  'paper': '<i class="fa fa-hand-paper-o"></i> Paper',
+	  'scissors': '<i class="fa fa-hand-scissors-o"></i> Scissors',
+	  'lizard': '<i class="fa fa-hand-lizard-o"></i> Lizard',
+	  'spock': '<i class="fa fa-hand-spock-o"></i> Spock',
+	}
+      });
+    </script>
     <script>
       $("#languagejs").text($("#languagejs").text() + "<script>" + $('#cuteformjs').text() + "<\/script>");
+      $("#rockpaperscissors").text($("#rockpaperscissors").text() + "<script>" + $('#cuteformwithhtmljs').text() + "<\/script>");
       </script>
       <script>
 	window.twttr=function(t,e,r){var n,i=t.getElementsByTagName(e)[0],w=window.twttr||{};return t.getElementById(r)?w:(n=t.createElement(e),n.id=r,n.src="https://platform.twitter.com/widgets.js",i.parentNode.insertBefore(n,i),w._e=[],w.ready=function(t){w._e.push(t)},w)}(document,"script","twitter-wjs");
