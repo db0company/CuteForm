@@ -160,27 +160,28 @@ div.cuteform-elt {
 	  <pre class="prettyprint lang-js">cuteform($('#language'), {'modal': 'true', 'modal-text': 'true'});</pre>
 
 	  Demo: <select name="languagemodal" data-cuteform="true" data-cuteform-modal="true" data-cuteform-modal-text="true">
-	    <option value="en" data-cuteform-image="images/en.png">English</option>
 	    <option value="ja" data-cuteform-image="images/ja.png">Japanese</option>
 	    <option value="es" data-cuteform-image="images/es.png">Spanish</option>
+	    <option value="en" data-cuteform-image="images/en.png">English</option>
+	    <option value="pt" data-cuteform-image="images/pt.png">Portuguese</option>
 	    <option value="de" data-cuteform-image="images/de.png">German</option>
 	    <option value="ru" data-cuteform-image="images/ru.png">Russian</option>
 	    <option value="fr" data-cuteform-image="images/fr.png">French</option>
-	    <option value="pt" data-cuteform-image="images/pt.png">Portuguese</option>
 	  </select>
 
 	  <p>You're going to need to either use Bootstrap modal plugin or code your own CSS/Javascript to show modals.</p>
 	  <a class="button" href="https://raw.githubusercontent.com/db0company/CuteForm/gh-pages/bootstrap-modal.min.css" target="_blank">Bootstrap Modals CSS</a>
 	  <a class="button" href="https://raw.githubusercontent.com/db0company/CuteForm/gh-pages/bootstrap-modal.min.js" target="_blank">Bootstrap Modals Javascript</a>
 
-	  <pre class="prettyprint lang-html">
+	  <pre class="prettyprint lang-html" id="modalrequirements">
 
-	&lt;!-- In head --&gt;
-	&lt;link rel=&quot;stylesheet&quot; href=&quot;bootstrap-modals.min.css&quot;&gt;
+      &lt;!-- In head --&gt;
+      &lt;link rel=&quot;stylesheet&quot; href=&quot;bootstrap-modals.min.css&quot;&gt;
 
-	&lt;!-- At the end of the body, after JQuery inclusion --&gt;
-	&lt;script src=&quot;bootstrap-modals.min.js&quot;&gt;&lt;/script&gt;
-      </pre>
+      &lt;!-- At the end of the body, after JQuery inclusion --&gt;
+      &lt;script src=&quot;bootstrap-modals.min.js&quot;&gt;&lt;/script&gt;
+
+      &lt;!-- At the end of the body, before any javascript inclusion --&gt;</pre>
 	</li>
 	<li>
 	  <h3>hide</h3>
@@ -237,6 +238,16 @@ div.cuteform-elt {
 
     </main>
 
+    <div id="modalwrapper">
+      <div class="modal fade" id="cuteform-modal">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	    <div class="modal-body"></div>
+	  </div>
+	</div>
+      </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
     <script src="bootstrap-modal.min.js"></script>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
@@ -245,6 +256,7 @@ div.cuteform-elt {
       $("#currency").text($("select[name=currency]").parent().html());
       $("#languagejs").text($("select[name=languagejs]").parent().html());
       $("#rockpaperscissors").text($("select[name=rockpaperscissors]").parent().html());
+      $('#modalrequirements').text($('#modalrequirements').text() + $('#modalwrapper').html());
     </script>
     <script src="cuteform.min.js"></script>
     <script id="cuteformjs">
