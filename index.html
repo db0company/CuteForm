@@ -136,9 +136,6 @@ div.cuteform-elt {
 
       <h2>Options</h2>
 
-      <p>If you're using <strong>HTML data- attributes</strong>, add a <code>data-cuteform-option</code> in your &lt;select&gt;.</p>
-      <p>If you're using <strong>Javascript</strong>, specify the option in the dictionary given to the <code>cuteform</code> function.</p>
-
       <ul>
 	<li>
 	  <h3>modal</h3>
@@ -149,6 +146,20 @@ div.cuteform-elt {
 	  <pre class="prettyprint lang-js">cuteform($('#language'), {'modal': 'true'});</pre>
 
 	  Demo: <select name="languagemodal" data-cuteform="true" data-cuteform-modal="true">
+	    <option value="en" data-cuteform-image="images/en.png">English</option>
+	    <option value="ja" data-cuteform-image="images/ja.png">Japanese</option>
+	    <option value="es" data-cuteform-image="images/es.png">Spanish</option>
+	    <option value="de" data-cuteform-image="images/de.png">German</option>
+	    <option value="ru" data-cuteform-image="images/ru.png">Russian</option>
+	    <option value="fr" data-cuteform-image="images/fr.png">French</option>
+	    <option value="pt" data-cuteform-image="images/pt.png">Portuguese</option>
+	  </select>
+
+	  <p>You can also use the text value on the selector:</p>
+	  <pre class="prettyprint lang-html">&lt;select ... data-cuteform-modal=&quot;true&quot; data-cuteform-modal-text=&quot;true&quot;&gt;...&lt;/select&gt;</pre>
+	  <pre class="prettyprint lang-js">cuteform($('#language'), {'modal': 'true', 'modal-text': 'true'});</pre>
+
+	  Demo: <select name="languagemodal" data-cuteform="true" data-cuteform-modal="true" data-cuteform-modal-text="true">
 	    <option value="en" data-cuteform-image="images/en.png">English</option>
 	    <option value="ja" data-cuteform-image="images/ja.png">Japanese</option>
 	    <option value="es" data-cuteform-image="images/es.png">Spanish</option>
