@@ -5,12 +5,13 @@
 
 function cuteformhtml(option, options) {
     var value = option.val();
+    var text = option.text();
     var image = typeof options['images'] !== 'undefined' && typeof options['images'][value] !== 'undefined' ? options['images'][value] : (typeof option.attr('data-cuteform-image') !== 'undefined' ? option.attr('data-cuteform-image') : null);
     if (image !== null) {
-	return $('<img class="cuteform-elt" src="' + image + '" data-cuteform-val="' + value + '">');
+	return $('<img class="cuteform-elt" src="' + image + '" data-cuteform-val="' + value + '" data-cuteform-text="' + text + '">');
     }
     var html = typeof options['html'] !== 'undefined' && typeof options['html'][value] !== 'undefined' ? options['html'][value] : (typeof option.attr('data-cuteform-html') !== 'undefined' ? option.attr('data-cuteform-html') : value);
-    return $('<div class="cuteform-elt" data-cuteform-val="' + value + '">' + html + '</div>');
+    return $('<div class="cuteform-elt" data-cuteform-val="' + value + '" data-cuteform-text="' + text + '">' + html + '</div>');
 }
 
 function cuteform(select, options) {
@@ -19,6 +20,7 @@ function cuteform(select, options) {
     var cuteform, modal, modal_button;
     // Modal
     var with_modal = options['modal'] == 'true' || select.attr('data-cuteform-modal') == 'true';
+    var with_modal_text = options['modal-text'] == 'true' || select.attr('data-cuteform-modal-text') == 'true';
     if (with_modal) {
 	modal = $('<div class="cuteform modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"></div></div></div></div>');
 	cuteform = modal.find('.modal-body');
@@ -49,14 +51,22 @@ function cuteform(select, options) {
 	    html.addClass('cuteform-selected');
 	    if (with_modal) {
 		modal_button.text('');
-		modal_button.append(cuteform.find('.cuteform-selected').clone(true).off());
+		if (with_modal_text) {
+		    modal_button.append('<span class="cuteform-modal-text">' + cuteform.find('.cuteform-selected').attr('data-cuteform-text') + '</span>');
+		} else {
+		    modal_button.append(cuteform.find('.cuteform-selected').clone(true).off());
+		}
 		modal.modal('hide');
 	    }
 	});
     });
     if (with_modal) {
 	// Change the content of the modal button and bind click
-	modal_button.append(cuteform.find('.cuteform-selected').clone(true).off());
+	if (with_modal_text) {
+	    modal_button.append('<span class="cuteform-modal-text">' + cuteform.find('.cuteform-selected').attr('data-cuteform-text') + '</span>');
+	} else {
+	    modal_button.append(cuteform.find('.cuteform-selected').clone(true).off());
+	}
 	modal_button.click(function(e) {
 	    e.preventDefault();
 	    modal.css('display', 'block');
