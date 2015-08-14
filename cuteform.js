@@ -21,20 +21,19 @@ function cuteform(select, options) {
     // Modal
     var with_modal = options['modal'] == 'true' || select.attr('data-cuteform-modal') == 'true';
     var with_modal_text = options['modal-text'] == 'true' || select.attr('data-cuteform-modal-text') == 'true';
+    cuteform = $('<div class="cuteform">' + (hide || with_modal ? '' : '<br>') + '</div>');
+    select.after(cuteform);
     if (with_modal) {
-	modal = $('<div class="cuteform modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"></div></div></div></div>');
-	cuteform = modal.find('.modal-body');
-	$('body').append(modal);
+	modal = $('#cuteform-modal');
 	var modal_button = $('<button class="cuteform-modal-button"></button>');
 	select.after(modal_button);
 	select.hide();
+	cuteform.hide();
     } else {
 	var hide = !((typeof options['hide'] !== 'undefined' && options['hide'].toString() == 'false') || select.attr('data-cuteform-hide') == 'false');
 	if (hide) {
 	    select.hide();
 	}
-	cuteform = $('<div class="cuteform">' + (hide ? '' : '<br>') + '</div>');
-	select.after(cuteform);
     }
     // Show images on cuteform div
     select.find('option').each(function() {
@@ -70,6 +69,10 @@ function cuteform(select, options) {
 	modal_button.click(function(e) {
 	    e.preventDefault();
 	    modal.css('display', 'block');
+	    modal.find('.modal-body').text('');
+	    var clone = cuteform.clone(true);
+	    clone.show();
+	    modal.find('.modal-body').append(clone);
 	    modal.modal();
 	    modal.on('hidden.bs.modal', function (e) {
 		modal.css('display', 'none');
