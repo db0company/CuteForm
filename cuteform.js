@@ -6,9 +6,15 @@
 function cuteformhtml(option, options) {
     var value = option.val();
     var text = option.text();
+    var add_title = options['add-title'] == 'true';
     var image = typeof options['images'] !== 'undefined' && typeof options['images'][value] !== 'undefined' ? options['images'][value] : (typeof option.attr('data-cuteform-image') !== 'undefined' ? option.attr('data-cuteform-image') : null);
     if (image !== null) {
-	return $('<img class="cuteform-elt" src="' + image + '" data-cuteform-val="' + value + '" data-cuteform-text="' + text + '">');
+    var return_str = '<img class="cuteform-elt" src="' + image + '" data-cuteform-val="' + value + '" data-cuteform-text="' + text + '"';
+    if (add_title) {
+      return_str += ' title="' + text + '"';
+    }
+    return_str += '>';
+	return $(return_str);
     }
     var html = typeof options['html'] !== 'undefined' && typeof options['html'][value] !== 'undefined' ? options['html'][value] : (typeof option.attr('data-cuteform-html') !== 'undefined' ? option.attr('data-cuteform-html') : value);
     return $('<div class="cuteform-elt" data-cuteform-val="' + value + '" data-cuteform-text="' + text + '">' + html + '</div>');
@@ -18,6 +24,8 @@ function cuteform(select, options) {
     var options = typeof options == 'undefined' ? {} : options;
     select.addClass('cuteform-select');
     var cuteform, modal, modal_button;
+    // Add title attribute
+    var add_title = options['add-title'] == 'true' || select.attr('data-cuteform-add-title') == 'true';
     // Modal
     var with_modal = options['modal'] == 'true' || select.attr('data-cuteform-modal') == 'true';
     var with_modal_text = options['modal-text'] == 'true' || select.attr('data-cuteform-modal-text') == 'true';
