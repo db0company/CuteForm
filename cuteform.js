@@ -25,7 +25,7 @@ function cuteform(select, options) {
     select.after(cuteform);
     if (with_modal) {
 	modal = $('#cuteform-modal');
-	var modal_button = $('<button class="cuteform-modal-button"></button>');
+	var modal_button = $('<button type="button" class="cuteform-modal-button"></button>');
 	select.after(modal_button);
 	select.hide();
 	cuteform.hide();
