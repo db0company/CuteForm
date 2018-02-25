@@ -21,7 +21,9 @@ function cuteform(select, options) {
     // Modal
     var with_modal = options['modal'] == 'true' || select.attr('data-cuteform-modal') == 'true';
     var with_modal_text = options['modal-text'] == 'true' || select.attr('data-cuteform-modal-text') == 'true';
-    cuteform = $('<div class="cuteform">' + (hide || with_modal ? '' : '<br>') + '</div>');
+    var title = options['title'] || select.attr('data-cuteform-title');
+    var name = options['name'] || select.attr('data-cuteform-name') || select.selector.split(' ').reverse()[0].replace(/[^_a-zA-Z0-9-]/g, '');
+    cuteform = $('<div class="cuteform" data-cuteform-name="' + name + '">' + (hide || with_modal ? '' : '<br>') + '</div>');
     select.after(cuteform);
     if (with_modal) {
 	modal = $('#cuteform-modal');
@@ -73,6 +75,9 @@ function cuteform(select, options) {
 	    var clone = cuteform.clone(true);
 	    clone.show();
 	    modal.find('.modal-body').append(clone);
+            if (title && modal.find('.modal-title').length > 0) {
+                modal.find('.modal-title').text(title);
+            }
 	    modal.modal();
 	    modal.on('hidden.bs.modal', function (e) {
 		modal.css('display', 'none');
