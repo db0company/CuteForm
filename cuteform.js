@@ -48,6 +48,7 @@ function cuteform(select, options) {
 	// On click, change current selected option and change images style
 	html.click(function(e) {
 	    select.val(html.attr('data-cuteform-val'));
+            select.trigger('change');
 	    cuteform.find('.cuteform-elt').removeClass('cuteform-selected');
 	    html.addClass('cuteform-selected');
 	    if (with_modal) {
