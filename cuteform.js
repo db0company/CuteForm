@@ -6,9 +6,16 @@
 function cuteformhtml(option, options) {
     var value = option.val();
     var text = option.text();
+    var tooltip = typeof options['tooltip'] !== 'undefined' && (options['tooltip'] == 'value' ? value : text)
     var image = typeof options['images'] !== 'undefined' && typeof options['images'][value] !== 'undefined' ? options['images'][value] : (typeof option.attr('data-cuteform-image') !== 'undefined' ? option.attr('data-cuteform-image') : null);
     if (image !== null) {
+	if (tooltip) {
+	    return $('<img class="cuteform-elt" src="' + image + '" data-cuteform-val="' + value + '" data-cuteform-text="' + text + '" title="' + tooltip + '">')
+	}
 	return $('<img class="cuteform-elt" src="' + image + '" data-cuteform-val="' + value + '" data-cuteform-text="' + text + '">');
+    }
+    if (tooltip) {
+        return $('<div class="cuteform-elt" data-cuteform-val="' + value + '" data-cuteform-text="' + text + '" title="' + tooltip + '">' + html + '</div>')
     }
     var html = typeof options['html'] !== 'undefined' && typeof options['html'][value] !== 'undefined' ? options['html'][value] : (typeof option.attr('data-cuteform-html') !== 'undefined' ? option.attr('data-cuteform-html') : value);
     return $('<div class="cuteform-elt" data-cuteform-val="' + value + '" data-cuteform-text="' + text + '">' + html + '</div>');
